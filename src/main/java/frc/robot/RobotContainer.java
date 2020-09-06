@@ -11,9 +11,10 @@ import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.Constants.JoystickConstants;
-import frc.robot.commands.JoystickDrive;
-import frc.robot.subsystems.DriveSubsystem;
+import frc.robot.commands.*;
+import frc.robot.subsystems.*;
 
 /**
  * This class is where the bulk of the robot should be declared.  Since Command-based is a
@@ -27,6 +28,10 @@ public class RobotContainer {
     private final DriveSubsystem m_drive = new DriveSubsystem();
 
     public Joystick m_driverController = new Joystick(JoystickConstants.driverControllerPort);
+
+    public final ShooterSubsystem m_shooter = new ShooterSubsystem();
+    public final HopperSubsystem m_hopper = new HopperSubsystem();
+    public final IntakeSubsystem m_intake = new IntakeSubsystem();
 
     
   
@@ -50,6 +55,13 @@ public class RobotContainer {
    * {@link edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
+
+    new JoystickButton(m_driverController, 2).whileHeld(new RunShooter(m_shooter, -0.65));
+    new JoystickButton(m_driverController, 1).whileHeld(new RunShooter(m_shooter, 0.3));
+    new JoystickButton(m_driverController, 6).whileHeld(new RunHopper(m_hopper, "sync"));
+    new JoystickButton(m_driverController, 4).whileHeld(new RunHopper(m_hopper, ""));
+    new JoystickButton(m_driverController, 5).whileHeld(new RunIntake(m_intake, 0.7));
+    new JoystickButton(m_driverController, 3).whileHeld(new RunIntake(m_intake,-0.5 ));
 
   }
 

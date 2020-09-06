@@ -37,10 +37,12 @@ public final class Constants {
     }
 
     public static class HopperConstants{
-        public static final int HopperMotor1Port = 30;
-        public static final int HopperMotor2Port = 31;
+        public static final int hopperMotor1Port = 30;
+        public static final int hopperMotor2Port = 31;
 
     }
-
+    public static class IntakeConstants{
+        public static final int intakeMotorPort = 40;
+    }
 
 }
